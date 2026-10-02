@@ -1,4 +1,4 @@
-package br.com.senai.ordensservico;
+package br.com.ordensservico.aberturaordensservico;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
