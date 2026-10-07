@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.ordensservico.aberturaordensservico.dto.EquipamentoRequest;
 import br.com.ordensservico.aberturaordensservico.model.Equipamento;
 import br.com.ordensservico.aberturaordensservico.model.Setor;
 import br.com.ordensservico.aberturaordensservico.repository.EquipamentoRepository;
@@ -21,8 +22,8 @@ public class EquipamentoService {
         this.setorRepository = setorRepository;
     }
 
-    public Optional<Equipamento> cadastrar(String nome, String numeroPatrimonio, Setor setor) {
-        Optional<Setor> setorEncontrado = setorRepository.findById(setor.getId());
+    public Optional<Equipamento> cadastrar(String nome, String numeroPatrimonio, Integer setorId) {
+        Optional<Setor> setorEncontrado = setorRepository.findById(setorId);
 
         if(setorEncontrado.isEmpty()) {
             return Optional.empty();
@@ -51,14 +52,14 @@ public class EquipamentoService {
         return Optional.of(equipamentoEncontrado.get());
     }
 
-    public Optional<Equipamento> atualizar(Integer id, Equipamento dadosAtualizados) {
+    public Optional<Equipamento> atualizar(Integer id, EquipamentoRequest dadosAtualizados) {
         Optional<Equipamento> equipamentoEncontrado = equipamentoRepository.findById(id);
 
         if (equipamentoEncontrado.isEmpty()) {
             return Optional.empty();
         }
         
-        Optional<Setor> setorEncontrado = setorRepository.findById(dadosAtualizados.getSetor().getId());
+        Optional<Setor> setorEncontrado = setorRepository.findById(dadosAtualizados.getSetorId());
         
         if (setorEncontrado.isEmpty()) {
             return Optional.empty();
