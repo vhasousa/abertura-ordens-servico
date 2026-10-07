@@ -48,6 +48,8 @@ public class SetorService {
             return false;
         }
 
+        setorRepository.deleteById(id);
+
         return true;
     }
 }
