@@ -22,8 +22,8 @@ public class EquipamentoService {
         this.setorRepository = setorRepository;
     }
 
-    public Optional<Equipamento> cadastrar(String nome, String numeroPatrimonio, Integer setorId) {
-        Optional<Setor> setorEncontrado = setorRepository.findById(setorId);
+    public Optional<Equipamento> cadastrar(EquipamentoRequest dadosEquipamento) {
+        Optional<Setor> setorEncontrado = setorRepository.findById(dadosEquipamento.getSetorId());
 
         if(setorEncontrado.isEmpty()) {
             return Optional.empty();
@@ -31,8 +31,8 @@ public class EquipamentoService {
 
         Equipamento equipamento = new Equipamento();
 
-        equipamento.setNome(nome);
-        equipamento.setNumeroPatrimonio(numeroPatrimonio);
+        equipamento.setNome(dadosEquipamento.getNome());
+        equipamento.setNumeroPatrimonio(dadosEquipamento.getNumeroPatrimonio());
         equipamento.setSetor(setorEncontrado.get());
 
         return Optional.of(equipamentoRepository.save(equipamento));

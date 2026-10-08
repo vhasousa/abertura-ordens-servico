@@ -31,11 +31,7 @@ public class EquipamentoController {
 
     @PostMapping 
     public ResponseEntity<Equipamento> cadastrar(@Valid  @RequestBody EquipamentoRequest dadosEquipamento) {
-        String nome = dadosEquipamento.getNome();
-        String numeroPatrimonio = dadosEquipamento.getNumeroPatrimonio();
-        Integer setorId = dadosEquipamento.getSetorId();
-
-        Optional<Equipamento> equipamento = equipamentoService.cadastrar(nome, numeroPatrimonio, setorId);
+        Optional<Equipamento> equipamento = equipamentoService.cadastrar(dadosEquipamento);
         
         if(equipamento.isEmpty()) {
             return ResponseEntity.notFound().build();
