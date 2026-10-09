@@ -30,7 +30,7 @@ public class EquipamentoController {
     }
 
     @PostMapping 
-    public ResponseEntity<Equipamento> cadastrar(@Valid  @RequestBody EquipamentoRequest dadosEquipamento) {
+    public ResponseEntity<?> cadastrar(@Valid  @RequestBody EquipamentoRequest dadosEquipamento) {
         Optional<Equipamento> equipamento = equipamentoService.cadastrar(dadosEquipamento);
         
         if(equipamento.isEmpty()) {
